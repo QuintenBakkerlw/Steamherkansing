@@ -189,3 +189,69 @@ def game_info(gamechose):
             lst.append(("Negative ratings", dictionary['negative_ratings']))
 
         return lst
+
+
+speciaal = ('!', '@', '#', '$', '%', '^', '&', '*',)
+nott = ('(', ')', '[', ']', '{', '}', '/')
+
+def ww_check(wachtwoord):
+    hasNumber = False
+    hasSpeciaal = False
+    hasKlein = False
+    hasNott = False
+    hasCapital = False
+    lenhas = False
+    wwjuist = False
+    for x in wachtwoord:
+        if x.isdigit():
+            hasNumber = True
+        if x.islower():
+            hasKlein = True
+        if x.isupper():
+            hasCapital = True
+        if x in speciaal:
+            hasSpeciaal = True
+        if x not in nott:
+            hasNott = True
+    if len(wachtwoord) >= 10 and len(wachtwoord) <= 20:
+        lenhas = True
+    if lenhas == True and hasNumber == True and hasKlein == True and hasCapital == True and hasSpeciaal == True and hasNott == True:
+        wwjuist = True
+        return wwjuist
+    else:
+        return wwjuist
+
+
+def sorted_hours_maker():
+    def nummer_sorter(lst):
+        #### while statement True
+        swapped = True
+        while swapped:
+            swapped = False
+            for i in range(len(lst) - 1):
+                ########### Looks if element is greater then the next( + 1)
+                if lst[i] > lst[i + 1]:
+                    ########### swaps element ###########
+                    lst[i], lst[i + 1] = lst[i + 1], lst[i]
+                    ########### swapped set to True to loop ###########
+                    swapped = True
+            if swapped == False:
+                return lst
+
+    playedHours = []
+    ########### puts average_playtime in a list ###########
+    with open("steam.json", "r") as json_file:
+        data = json.load(json_file)
+    for x in data:
+        playedHours.append(x['average_playtime'])
+    json_file.close()
+
+    sorted_played_hours = nummer_sorter(playedHours)
+
+    with open("sortedHoursLst.txt", 'w') as f:
+        for s in sorted_played_hours:
+            f.write(str(s) + '\n')
+    f.close()
+
+
+
