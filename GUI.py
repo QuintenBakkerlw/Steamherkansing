@@ -9,7 +9,7 @@ root.state("zoomed")
 ### makes sortedhourslst
 
 # na 1x runnen kan je dit uitcommenten
-sorted_hours_maker()
+# sorted_hours_maker()
 
 ### Frames
 top_frame = Frame(root, bg='skyblue4', height=30)

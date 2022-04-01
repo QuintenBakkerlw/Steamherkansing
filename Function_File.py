@@ -41,7 +41,7 @@ def averageplayedGraph(frame, gamechosen):
 
         ### het maken van de grafiek ###
         if sortplayedHours.index(gameHour) >= 25750:
-            fig1, ax1 = plt.subplots(figsize=(8, 5), dpi=80)
+            fig1, ax1 = plt.subplots(figsize=(8, 5), dpi=70)
             plt.style.use('seaborn-talk')
             i = np.array(sortplayedHours)
             placement = np.arange(0, 27065)
@@ -63,8 +63,8 @@ def averageplayedGraph(frame, gamechosen):
             new_canvas.grid(row=2)
             new_canvas.create_text(
                 325, 200,
-                font=("Arial", 25),
-                text="Sorry, \nyour games doesn't have de\n required amount of hours")
+                font=("Arial", 16),
+                text=f"Sorry, \nthis game doesn't have the\n required amount of hours for a graph.\n{gameHour} average played hours.")
 
 
 def searchEngine(search):
